@@ -1,48 +1,55 @@
 // Elysian — Root Module
 
-import { Module } from '@nestjs/common';
+import { Module, type DynamicModule, type Type } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { ChatModule } from './chat/chat.module';
-import { HealthModule } from './health/health.module';
-import { InsightsModule } from './insights/insights.module';
-import { ProfileModule } from './profile/profile.module';
-import { SeedModule } from './seed/seed.module';
-import { WorkoutsModule } from './workouts/workouts.module';
+
+// These modules require a database connection
+const dbDependentModules: Type[] = [];
+if (process.env.DATABASE_URL) {
+  // Dynamic requires to avoid import-time crashes
+  dbDependentModules.push(
+    require('./chat/chat.module').ChatModule,
+    require('./health/health.module').HealthModule,
+    require('./insights/insights.module').InsightsModule,
+    require('./profile/profile.module').ProfileModule,
+    require('./seed/seed.module').SeedModule,
+    require('./workouts/workouts.module').WorkoutsModule,
+  );
+}
+
+const dbModule: DynamicModule[] = process.env.DATABASE_URL
+  ? [
+      TypeOrmModule.forRootAsync({
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: (config: ConfigService) => ({
+          type: 'postgres' as const,
+          url: config.get<string>('DATABASE_URL'),
+          autoLoadEntities: true,
+          synchronize: false,
+          ssl: config.get<string>('DATABASE_URL')?.includes('neon.tech')
+            ? { rejectUnauthorized: false }
+            : false,
+          logging:
+            config.get('NODE_ENV') === 'development'
+              ? ['error', 'warn']
+              : ['error'],
+        }),
+      }),
+    ]
+  : [];
 
 @Module({
   imports: [
-    // Environment variables
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
     }),
-
-    // Database connection
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        url: config.get<string>('DATABASE_URL'),
-        autoLoadEntities: true,
-        synchronize: false, // Never auto-sync in production — use migrations
-        ssl: config.get<string>('DATABASE_URL')?.includes('neon.tech')
-          ? { rejectUnauthorized: false }
-          : false,
-        logging: config.get('NODE_ENV') === 'development' ? ['error', 'warn'] : ['error'],
-      }),
-    }),
-
-    // Feature modules
+    ...dbModule,
     AuthModule,
-    HealthModule,
-    WorkoutsModule,
-    InsightsModule,
-    ChatModule,
-    ProfileModule,
-    SeedModule,
+    ...dbDependentModules,
   ],
 })
 export class AppModule {}

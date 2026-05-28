@@ -2,6 +2,7 @@
 
 import {
   Injectable,
+  Optional,
   ConflictException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -16,12 +17,16 @@ import { LoginDto } from './dto/login.dto';
 @Injectable()
 export class AuthService {
   constructor(
+    @Optional()
     @InjectRepository(User)
-    private readonly userRepo: Repository<User>,
+    private readonly userRepo: Repository<User> | null,
     private readonly jwtService: JwtService,
   ) {}
 
   async signup(dto: SignupDto) {
+    if (!this.userRepo) {
+      throw new ConflictException('Database not configured');
+    }
     const existing = await this.userRepo.findOne({
       where: { email: dto.email },
     });
@@ -51,6 +56,10 @@ export class AuthService {
       return this.buildTokenResponse(demoUser);
     }
 
+    if (!this.userRepo) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
     const user = await this.userRepo.findOne({
       where: { email: dto.email },
     });
@@ -72,23 +81,24 @@ export class AuthService {
     name: string | null;
     avatar_url: string | null;
   }) {
+    if (!this.userRepo) {
+      throw new UnauthorizedException('Database not configured');
+    }
+
     let user = await this.userRepo.findOne({
       where: { google_id: profile.google_id },
     });
 
     if (!user) {
-      // Check if user exists with same email
       user = await this.userRepo.findOne({
         where: { email: profile.email },
       });
       if (user) {
-        // Link Google to existing account
         user.google_id = profile.google_id;
         if (!user.avatar_url) user.avatar_url = profile.avatar_url;
         if (!user.name) user.name = profile.name;
         await this.userRepo.save(user);
       } else {
-        // Create new user
         user = this.userRepo.create({
           email: profile.email,
           google_id: profile.google_id,
@@ -103,9 +113,12 @@ export class AuthService {
   }
 
   async getMe(userId: string) {
-    // Demo account
     if (userId === '00000000-0000-0000-0000-000000000001') {
       return { id: userId, email: 'demo@elysian.app', name: 'Demo User', avatar_url: null };
+    }
+
+    if (!this.userRepo) {
+      throw new UnauthorizedException('User not found');
     }
 
     const user = await this.userRepo.findOne({ where: { id: userId } });
