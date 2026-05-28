@@ -89,7 +89,7 @@ export function AuthScreen() {
             <Zap size={28} style={{ color: 'var(--accent-primary)' }} />
           </div>
           <div className="text-center">
-            <h1 className="text-2xl font-bold tracking-tight gradient-text">PulseAI</h1>
+            <h1 className="text-2xl font-bold tracking-tight gradient-text">Elysian</h1>
             <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
               AI-powered fitness intelligence
             </p>
@@ -196,7 +196,7 @@ export function AuthScreen() {
         <p className="text-[10px] text-center mt-8 leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
           By continuing, you agree to our Terms of Service and Privacy Policy.
           <br />
-          PulseAI is not medical advice. Always consult healthcare professionals.
+          Elysian is not medical advice. Always consult healthcare professionals.
         </p>
       </motion.div>
     </div>

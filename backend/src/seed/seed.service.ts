@@ -1,4 +1,4 @@
-// PulseAI — Seed Service
+// Elysian — Seed Service
 
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

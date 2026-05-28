@@ -1,4 +1,4 @@
-// PulseAI — Derived Health Metrics
+// Elysian — Derived Health Metrics
 
 // Uses a generic interface so it works with both local data and Supabase data
 interface DayMetrics {

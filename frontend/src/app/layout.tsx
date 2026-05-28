@@ -9,14 +9,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "PulseAI — AI Fitness Intelligence",
+  title: "Elysian — Fitness Intelligence",
   description:
-    "Your AI-powered fitness copilot. Predictive health intelligence, adaptive coaching, and personalized insights.",
+    "Elysian is your AI-powered fitness copilot for predictive health intelligence, adaptive coaching, and personalized insights.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "PulseAI",
+    title: "Elysian",
   },
   other: {
     "mobile-web-app-capable": "yes",

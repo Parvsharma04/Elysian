@@ -1,4 +1,4 @@
-// PulseAI — Query Health DTO
+// Elysian — Query Health DTO
 
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsInt, IsOptional, Min, Max } from 'class-validator';

@@ -1,4 +1,4 @@
-// PulseAI — Health Service
+// Elysian — Health Service
 
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

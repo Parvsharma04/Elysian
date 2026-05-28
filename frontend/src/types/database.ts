@@ -1,4 +1,4 @@
-// PulseAI — Database Type Definitions
+// Elysian — Database Type Definitions
 
 export interface Profile {
   id: string;

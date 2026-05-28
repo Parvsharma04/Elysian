@@ -1,4 +1,4 @@
-// PulseAI — Profile Module
+// Elysian — Profile Module
 
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';

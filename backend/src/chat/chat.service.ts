@@ -1,4 +1,4 @@
-// PulseAI — Chat Service
+// Elysian — Chat Service
 
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

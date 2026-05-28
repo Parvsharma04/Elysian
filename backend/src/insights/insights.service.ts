@@ -1,4 +1,4 @@
-// PulseAI — Insights Service
+// Elysian — Insights Service
 
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

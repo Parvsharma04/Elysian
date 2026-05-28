@@ -1,4 +1,4 @@
-// PulseAI — Auth Helpers
+// Elysian — Auth Helpers
 
 import { getSupabase } from './supabase';
 

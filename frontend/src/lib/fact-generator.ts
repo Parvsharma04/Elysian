@@ -1,4 +1,4 @@
-// PulseAI — AI-Powered Fact Generator
+// Elysian — AI-Powered Fact Generator
 // Generates engaging, contextual fun facts from health data
 
 import type { HealthDayData, WorkoutData } from '@/store/health-store';

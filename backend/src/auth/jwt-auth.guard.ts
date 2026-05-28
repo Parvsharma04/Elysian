@@ -1,4 +1,4 @@
-// PulseAI — JWT Auth Guard
+// Elysian — JWT Auth Guard
 
 import { Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';

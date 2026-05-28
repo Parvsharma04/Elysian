@@ -31,7 +31,7 @@ export function PulseDrop({ fact, index = 0, compact = false }: PulseDropProps) 
     e.stopPropagation();
     if (navigator.share) {
       await navigator.share({
-        title: `PulseAI — ${fact.title}`,
+        title: `Elysian — ${fact.title}`,
         text: `${fact.emoji} ${fact.title}\n${fact.body}`,
       });
     }

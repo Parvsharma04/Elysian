@@ -1,4 +1,4 @@
-// PulseAI — Seed Controller
+// Elysian — Seed Controller
 
 import { Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';

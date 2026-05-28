@@ -1,4 +1,4 @@
-// PulseAI — Zustand Health Store (Hybrid: local mock + Supabase)
+// Elysian — Zustand Health Store (Hybrid: local mock + Supabase)
 
 import { create } from 'zustand';
 import {
@@ -196,7 +196,7 @@ function mapSupabaseChat(c: any): ChatMessageData {
 function loadSavedFacts(): PulseFact[] {
   if (typeof window === 'undefined') return [];
   try {
-    const saved = localStorage.getItem('pulseai-saved-facts');
+    const saved = localStorage.getItem('elysian-saved-facts');
     return saved ? JSON.parse(saved) : [];
   } catch {
     return [];
@@ -206,7 +206,7 @@ function loadSavedFacts(): PulseFact[] {
 function persistSavedFacts(facts: PulseFact[]) {
   if (typeof window === 'undefined') return;
   try {
-    localStorage.setItem('pulseai-saved-facts', JSON.stringify(facts));
+    localStorage.setItem('elysian-saved-facts', JSON.stringify(facts));
   } catch { /* ignore */ }
 }
 

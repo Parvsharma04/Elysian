@@ -1,4 +1,4 @@
-// PulseAI — Profile Service
+// Elysian — Profile Service
 
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

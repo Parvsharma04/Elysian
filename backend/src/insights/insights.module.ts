@@ -1,4 +1,4 @@
-// PulseAI — Insights Module
+// Elysian — Insights Module
 
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';

@@ -1,4 +1,4 @@
-// PulseAI — Health Day Entity
+// Elysian — Health Day Entity
 
 import {
   Entity,

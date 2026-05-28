@@ -1,4 +1,4 @@
-// PulseAI — NestJS Bootstrap
+// Elysian — NestJS Bootstrap
 
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -28,8 +28,8 @@ async function bootstrap() {
 
   // Swagger API Docs
   const config = new DocumentBuilder()
-    .setTitle('PulseAI API')
-    .setDescription('AI Fitness Intelligence Platform — Backend API')
+    .setTitle('Elysian API')
+    .setDescription('Elysian Fitness Intelligence Platform — Backend API')
     .setVersion('0.1.0')
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
@@ -42,7 +42,7 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3001;
   await app.listen(port);
-  console.log(`🚀 PulseAI API running on http://localhost:${port}`);
+  console.log(`🚀 Elysian API running on http://localhost:${port}`);
   console.log(`📚 Swagger docs at http://localhost:${port}/api/docs`);
 }
 bootstrap();

@@ -1,4 +1,4 @@
-// PulseAI — Current User Decorator
+// Elysian — Current User Decorator
 
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { AuthUser } from './jwt.strategy';

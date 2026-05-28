@@ -1,4 +1,4 @@
-// PulseAI — AI Insight Entity
+// Elysian — AI Insight Entity
 
 import {
   Entity,

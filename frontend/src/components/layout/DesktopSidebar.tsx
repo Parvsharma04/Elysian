@@ -40,7 +40,7 @@ export function DesktopSidebar() {
           <Zap size={18} style={{ color: 'var(--accent-primary)' }} />
         </div>
         <div>
-          <span className="text-sm font-bold tracking-tight gradient-text">PulseAI</span>
+          <span className="text-sm font-bold tracking-tight gradient-text">Elysian</span>
           <span className="block text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
             {profile?.subscription_tier === 'pro' ? 'Pro' : profile?.subscription_tier === 'elite' ? 'Elite' : 'Free'}
           </span>

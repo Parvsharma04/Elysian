@@ -1,4 +1,4 @@
-// PulseAI — Supabase JWT Strategy
+// Elysian — Supabase JWT Strategy
 
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';

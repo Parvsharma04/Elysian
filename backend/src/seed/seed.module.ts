@@ -1,4 +1,4 @@
-// PulseAI — Seed Module
+// Elysian — Seed Module
 
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';

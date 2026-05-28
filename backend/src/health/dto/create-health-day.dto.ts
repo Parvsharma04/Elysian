@@ -1,4 +1,4 @@
-// PulseAI — Create Health Day DTO
+// Elysian — Create Health Day DTO
 
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {

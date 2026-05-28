@@ -1,4 +1,4 @@
-// PulseAI — Auth Module
+// Elysian — Auth Module
 
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';

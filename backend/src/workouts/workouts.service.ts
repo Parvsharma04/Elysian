@@ -1,4 +1,4 @@
-// PulseAI — Workouts Service
+// Elysian — Workouts Service
 
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

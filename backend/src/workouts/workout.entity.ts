@@ -1,4 +1,4 @@
-// PulseAI — Workout Entity
+// Elysian — Workout Entity
 
 import {
   Entity,

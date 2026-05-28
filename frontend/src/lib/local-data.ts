@@ -1,4 +1,4 @@
-// PulseAI — Local Data Generator
+// Elysian — Local Data Generator
 // Generates realistic health data for demo/offline mode
 // This replaces mock-data.ts — not used when Supabase is connected
 

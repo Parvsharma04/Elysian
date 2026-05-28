@@ -1,4 +1,4 @@
-// PulseAI — Create Workout DTO
+// Elysian — Create Workout DTO
 
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {

@@ -1,4 +1,4 @@
-// PulseAI — Mock Health Data (30 days)
+// Elysian — Mock Health Data (30 days)
 
 export interface HealthDay {
   date: string;

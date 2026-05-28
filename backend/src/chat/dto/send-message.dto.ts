@@ -1,4 +1,4 @@
-// PulseAI — Send Chat Message DTO
+// Elysian — Send Chat Message DTO
 
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, MinLength, MaxLength } from 'class-validator';

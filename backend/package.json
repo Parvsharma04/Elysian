@@ -1,7 +1,7 @@
 {
-  "name": "pulseai-backend",
+  "name": "elysian-backend",
   "version": "0.1.0",
-  "description": "PulseAI — NestJS Backend API",
+  "description": "Elysian — NestJS Backend API",
   "private": true,
   "scripts": {
     "build": "nest build",

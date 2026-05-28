@@ -1,4 +1,4 @@
-// PulseAI — Update Profile DTO
+// Elysian — Update Profile DTO
 
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import {

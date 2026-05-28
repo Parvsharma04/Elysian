@@ -1,8 +1,10 @@
-// PulseAI — Insights Controller
+// Elysian — Insights Controller
 
 import {
   Controller,
   Get,
+  Param,
+  Patch,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -33,5 +35,13 @@ export class InsightsController {
       return { message: 'No health data to analyze' };
     }
     return insights;
+  }
+
+  @Patch(':id/read')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Mark an insight as read' })
+  async markAsRead(@CurrentUser() user: AuthUser, @Param('id') id: string) {
+    await this.insightsService.markAsRead(user.id, id);
+    return { success: true };
   }
 }

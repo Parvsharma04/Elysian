@@ -1,4 +1,4 @@
-// PulseAI — Profile Entity
+// Elysian — Profile Entity
 
 import {
   Entity,

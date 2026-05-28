@@ -1,4 +1,4 @@
-// PulseAI — Profile Controller
+// Elysian — Profile Controller
 
 import {
   Controller,

@@ -1,4 +1,4 @@
-// PulseAI — Workouts Controller
+// Elysian — Workouts Controller
 
 import {
   Controller,

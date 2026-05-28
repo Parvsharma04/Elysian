@@ -1,4 +1,4 @@
-// PulseAI — Chat Message Entity
+// Elysian — Chat Message Entity
 
 import {
   Entity,
