@@ -38,10 +38,12 @@ export function CoachScreen() {
 
     try {
       if (dataSource === 'supabase') {
-        // Real API call
-        const res = await fetch('/api/chat', {
+        // Real API call to backend
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+        const res = await fetch(`${API_BASE}/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
           body: JSON.stringify({ content: message }),
         });
         if (res.ok) {

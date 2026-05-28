@@ -10,6 +10,7 @@ import {
   calcReadinessScore,
   getStreakDays,
 } from '@/lib/derived-metrics';
+import { generatePulseFacts, type PulseFact } from '@/lib/fact-generator';
 
 // Unified types that work with both mock data and Supabase
 export interface HealthDayData {
@@ -66,6 +67,8 @@ interface HealthStore {
   workouts: WorkoutData[];
   insights: InsightData[];
   chatMessages: ChatMessageData[];
+  pulseFacts: PulseFact[];
+  savedFacts: PulseFact[];
 
   // Derived
   today: HealthDayData | null;
@@ -89,6 +92,8 @@ interface HealthStore {
   setActiveTab: (tab: string) => void;
   setTrendRange: (range: '7d' | '30d' | '90d') => void;
   addChatMessage: (message: ChatMessageData) => void;
+  saveFact: (fact: PulseFact) => void;
+  unsaveFact: (factId: string) => void;
   fetchAll: () => Promise<void>;
   setLocalData: (days: HealthDayData[], workouts: WorkoutData[], insights: InsightData[], chatMessages: ChatMessageData[]) => void;
 }
@@ -187,11 +192,31 @@ function mapSupabaseChat(c: any): ChatMessageData {
   };
 }
 
+// Load saved facts from localStorage
+function loadSavedFacts(): PulseFact[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const saved = localStorage.getItem('pulseai-saved-facts');
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    return [];
+  }
+}
+
+function persistSavedFacts(facts: PulseFact[]) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem('pulseai-saved-facts', JSON.stringify(facts));
+  } catch { /* ignore */ }
+}
+
 export const useHealthStore = create<HealthStore>((set, get) => ({
   days: [],
   workouts: [],
   insights: [],
   chatMessages: [],
+  pulseFacts: [],
+  savedFacts: loadSavedFacts(),
   today: null,
   yesterday: null,
   recoveryScore: 0,
@@ -213,13 +238,27 @@ export const useHealthStore = create<HealthStore>((set, get) => ({
   addChatMessage: (message) =>
     set((state) => ({ chatMessages: [...state.chatMessages, message] })),
 
+  saveFact: (fact) => {
+    const updated = [...get().savedFacts, fact];
+    persistSavedFacts(updated);
+    set({ savedFacts: updated });
+  },
+
+  unsaveFact: (factId) => {
+    const updated = get().savedFacts.filter((f) => f.id !== factId);
+    persistSavedFacts(updated);
+    set({ savedFacts: updated });
+  },
+
   setLocalData: (days, workouts, insights, chatMessages) => {
     const derived = computeDerived(days);
+    const pulseFacts = generatePulseFacts(days, workouts);
     set({
       days,
       workouts,
       insights,
       chatMessages,
+      pulseFacts,
       ...derived,
       loading: false,
       error: null,
@@ -230,12 +269,14 @@ export const useHealthStore = create<HealthStore>((set, get) => ({
   fetchAll: async () => {
     set({ loading: true, error: null });
 
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
     try {
       const [healthRes, workoutsRes, insightsRes, chatRes] = await Promise.all([
-        fetch('/api/health?days=90'),
-        fetch('/api/workouts'),
-        fetch('/api/insights'),
-        fetch('/api/chat'),
+        fetch(`${API_BASE}/health?days=90`, { credentials: 'include' }),
+        fetch(`${API_BASE}/workouts`, { credentials: 'include' }),
+        fetch(`${API_BASE}/insights`, { credentials: 'include' }),
+        fetch(`${API_BASE}/chat`, { credentials: 'include' }),
       ]);
 
       // If API calls fail (e.g. no Supabase configured), fall back to local mock data
@@ -243,11 +284,13 @@ export const useHealthStore = create<HealthStore>((set, get) => ({
         const { generateLocalMockData } = await import('@/lib/local-data');
         const mock = generateLocalMockData();
         const derived = computeDerived(mock.days);
+        const pulseFacts = generatePulseFacts(mock.days, mock.workouts);
         set({
           days: mock.days,
           workouts: mock.workouts,
           insights: mock.insights,
           chatMessages: mock.chatMessages,
+          pulseFacts,
           ...derived,
           loading: false,
           error: null,
@@ -273,11 +316,13 @@ export const useHealthStore = create<HealthStore>((set, get) => ({
         const { generateLocalMockData } = await import('@/lib/local-data');
         const mock = generateLocalMockData();
         const derived = computeDerived(mock.days);
+        const pulseFacts = generatePulseFacts(mock.days, mock.workouts);
         set({
           days: mock.days,
           workouts: mock.workouts,
           insights: mock.insights,
           chatMessages: mock.chatMessages,
+          pulseFacts,
           ...derived,
           loading: false,
           error: null,
@@ -287,11 +332,13 @@ export const useHealthStore = create<HealthStore>((set, get) => ({
       }
 
       const derived = computeDerived(days);
+      const pulseFacts = generatePulseFacts(days, workouts);
       set({
         days,
         workouts,
         insights,
         chatMessages,
+        pulseFacts,
         ...derived,
         loading: false,
         error: null,
@@ -303,11 +350,13 @@ export const useHealthStore = create<HealthStore>((set, get) => ({
         const { generateLocalMockData } = await import('@/lib/local-data');
         const mock = generateLocalMockData();
         const derived = computeDerived(mock.days);
+        const pulseFacts = generatePulseFacts(mock.days, mock.workouts);
         set({
           days: mock.days,
           workouts: mock.workouts,
           insights: mock.insights,
           chatMessages: mock.chatMessages,
+          pulseFacts,
           ...derived,
           loading: false,
           error: null,

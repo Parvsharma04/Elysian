@@ -9,14 +9,14 @@ import { HomeScreen } from '@/components/home/HomeScreen';
 import { CoachScreen } from '@/components/coach/CoachScreen';
 import { TrendsScreen } from '@/components/trends/TrendsScreen';
 import { ActivityScreen } from '@/components/activity/ActivityScreen';
-import { ReportsScreen } from '@/components/reports/ReportsScreen';
+import { ProfileScreen } from '@/components/profile/ProfileScreen';
 
 const screens: Record<string, React.ComponentType> = {
   home: HomeScreen,
   coach: CoachScreen,
   trends: TrendsScreen,
   activity: ActivityScreen,
-  reports: ReportsScreen,
+  profile: ProfileScreen,
 };
 
 export function AppShell() {

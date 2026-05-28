@@ -457,6 +457,49 @@ body {
 }
 
 /* ========================================
+   PULSE DROP STYLES
+   ======================================== */
+
+.pulse-drop {
+  position: relative;
+  transition: transform 200ms var(--ease-out-expo);
+}
+
+.pulse-drop::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 50%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+@keyframes orb-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  50% {
+    transform: translateY(-30px) translateX(10px);
+  }
+}
+
+.animate-orb-rotate {
+  animation: orb-rotate 20s linear infinite;
+}
+
+/* ========================================
    STAGGER ANIMATION
    ======================================== */
 

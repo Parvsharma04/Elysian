@@ -7,7 +7,7 @@ import {
   MessageCircle,
   TrendingUp,
   Activity,
-  FileText,
+  User,
   Zap,
   LogOut,
 } from 'lucide-react';
@@ -18,7 +18,7 @@ const tabs = [
   { id: 'coach', label: 'Coach', icon: MessageCircle },
   { id: 'trends', label: 'Trends', icon: TrendingUp },
   { id: 'activity', label: 'Activity', icon: Activity },
-  { id: 'reports', label: 'Reports', icon: FileText },
+  { id: 'profile', label: 'Profile', icon: User },
 ];
 
 export function DesktopSidebar() {

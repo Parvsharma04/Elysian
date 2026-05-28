@@ -85,9 +85,16 @@ function generateChatHistory(): ChatMessageData[] {
   ];
 }
 
-let cachedData: ReturnType<typeof generateLocalMockData> | null = null;
+interface LocalMockData {
+  days: ReturnType<typeof generateDays>;
+  workouts: ReturnType<typeof generateWorkouts>;
+  insights: ReturnType<typeof generateInsights>;
+  chatMessages: ReturnType<typeof generateChatHistory>;
+}
 
-export function generateLocalMockData() {
+let cachedData: LocalMockData | null = null;
+
+export function generateLocalMockData(): LocalMockData {
   if (cachedData) return cachedData;
 
   const days = generateDays();
