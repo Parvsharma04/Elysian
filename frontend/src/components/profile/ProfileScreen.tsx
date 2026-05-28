@@ -5,9 +5,11 @@ import { useHealthStore } from '@/store/health-store';
 import { PulseDrop } from '@/components/home/PulseDrop';
 import { SavedDropsGrid } from './SavedDropsGrid';
 import { ScoreRing } from '@/components/ui/ScoreRing';
-import { Bookmark, Flame, Footprints, Moon, Trophy, Sparkles } from 'lucide-react';
+import { Bookmark, Flame, Footprints, Moon, Trophy, Sparkles, LogOut } from 'lucide-react';
+import { useAuth } from '@/components/auth/AuthProvider';
 
 export function ProfileScreen() {
+  const { profile, signOut } = useAuth();
   const savedFacts = useHealthStore((s) => s.savedFacts);
   const streakDays = useHealthStore((s) => s.streakDays);
   const days = useHealthStore((s) => s.days);
@@ -44,11 +46,27 @@ export function ProfileScreen() {
         </motion.div>
 
         <h1 className="text-lg font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-          Your Profile
+          {profile?.name || 'Your Profile'}
         </h1>
-        <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
-          {days.length} days tracked
+        <p className="text-xs mt-0.5 font-mono" style={{ color: 'var(--text-secondary)' }}>
+          {profile?.email || `${days.length} days tracked`}
         </p>
+
+        {profile && (
+          <motion.button
+            onClick={signOut}
+            className="mt-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/[0.08] hover:bg-white/[0.04] transition-all duration-200 text-[11px] font-medium cursor-pointer"
+            style={{
+              color: 'var(--text-secondary)',
+              background: 'rgba(255, 255, 255, 0.01)',
+            }}
+            whileHover={{ scale: 1.02, borderColor: 'var(--border-strong)' }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <LogOut size={11} style={{ color: 'var(--text-tertiary)' }} />
+            <span>Sign out</span>
+          </motion.button>
+        )}
       </motion.div>
 
       {/* Quick stats row */}
@@ -91,7 +109,7 @@ export function ProfileScreen() {
           <SavedDropsGrid facts={savedFacts} />
         ) : (
           <motion.div
-            className="flex flex-col items-center gap-3 py-12 rounded-3xl border border-dashed border-white/[0.06]"
+            className="flex flex-col items-center gap-3 py-12 rounded-xl border border-dashed border-white/[0.06]"
             style={{ background: 'rgba(12, 12, 20, 0.4)' }}
           >
             <motion.div
@@ -123,7 +141,7 @@ function QuickStat({
 }) {
   return (
     <div
-      className="flex flex-col items-center gap-1.5 py-3 rounded-2xl border border-white/[0.04]"
+      className="flex flex-col items-center gap-1.5 py-3 rounded-xl border border-white/[0.04]"
       style={{ background: 'rgba(12, 12, 20, 0.6)' }}
     >
       <Icon size={14} style={{ color }} />

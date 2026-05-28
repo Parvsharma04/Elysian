@@ -23,7 +23,7 @@ export function StoryCard({
 }: StoryCardProps) {
   return (
     <motion.div
-      className="relative rounded-2xl border"
+      className="relative rounded-xl border"
       style={{
         background: 'var(--bg-card)',
         borderColor: 'var(--border-subtle)',

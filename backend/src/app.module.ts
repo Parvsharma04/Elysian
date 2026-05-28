@@ -28,7 +28,7 @@ const dbModule: DynamicModule[] = process.env.DATABASE_URL
           type: 'postgres' as const,
           url: config.get<string>('DATABASE_URL'),
           autoLoadEntities: true,
-          synchronize: false,
+          synchronize: true,
           ssl: config.get<string>('DATABASE_URL')?.includes('neon.tech')
             ? { rejectUnauthorized: false }
             : false,

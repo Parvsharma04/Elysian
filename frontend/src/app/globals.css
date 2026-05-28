@@ -62,11 +62,12 @@
   --sidebar-width: 232px;
   --content-max-width: 520px;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-xl: 14px;
-  --radius-2xl: 16px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+  --radius-3xl: 14px;
   --radius-full: 9999px;
 
   --shadow-card: 0 8px 18px rgba(0, 0, 0, 0.14);
@@ -89,6 +90,13 @@
   --color-muted: var(--text-secondary);
   --color-muted-foreground: var(--text-tertiary);
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+  --radius-full: var(--radius-full);
 }
 
 /* ── BASE ── */
@@ -360,3 +368,144 @@ body {
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
 .shimmer-overlay { position: relative; overflow: hidden; }
+
+/* ── FIREBASEUI CUSTOM OVERRIDES ── */
+
+.firebaseui-container {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-family: "Inter", system-ui, -apple-system, sans-serif !important;
+}
+
+.firebaseui-card-content {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+.firebaseui-title {
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  font-size: 1.25rem !important;
+  margin-bottom: 24px !important;
+}
+
+.firebaseui-idp-button {
+  border-radius: var(--radius-md) !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  height: 44px !important;
+  box-shadow: none !important;
+  border: 1px solid var(--border-default) !important;
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  color: var(--text-primary) !important;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast) !important;
+  margin-bottom: 12px !important;
+}
+
+.firebaseui-idp-button:hover {
+  background-color: var(--bg-card-hover) !important;
+  border-color: var(--border-strong) !important;
+}
+
+.firebaseui-idp-text {
+  color: var(--text-primary) !important;
+  font-size: 0.875rem !important;
+}
+
+.firebaseui-idp-google {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.firebaseui-idp-password {
+  background-color: var(--accent-primary) !important;
+  border: none !important;
+}
+.firebaseui-idp-password:hover {
+  background-color: var(--accent-primary) !important;
+  opacity: 0.95 !important;
+}
+.firebaseui-idp-password .firebaseui-idp-text {
+  color: var(--text-inverse) !important;
+}
+
+.firebaseui-idp-icon-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.firebaseui-list-item {
+  margin-bottom: 0px !important;
+}
+
+.firebaseui-textfield.mdl-textfield {
+  width: 100% !important;
+}
+
+.firebaseui-input {
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-default) !important;
+  font-size: 0.875rem !important;
+}
+
+.firebaseui-input:focus {
+  border-bottom: 1px solid var(--accent-primary) !important;
+}
+
+.firebaseui-label {
+  color: var(--text-tertiary) !important;
+}
+
+.firebaseui-label::after {
+  background-color: var(--accent-primary) !important;
+}
+
+.firebaseui-button {
+  border-radius: var(--radius-md) !important;
+  font-family: "Inter", sans-serif !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+  height: 38px !important;
+}
+
+.firebaseui-id-submit {
+  background: var(--gradient-primary) !important;
+  color: var(--text-inverse) !important;
+}
+
+.firebaseui-id-secondary-link {
+  color: var(--accent-primary) !important;
+}
+
+.firebaseui-callback-indicator-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.mdl-spinner__layer {
+  border-color: var(--accent-primary) !important;
+}
+
+.firebaseui-form-links {
+  color: var(--text-secondary) !important;
+}
+
+.firebaseui-form-links a {
+  color: var(--accent-primary) !important;
+}
+
+.firebaseui-tos {
+  color: var(--text-tertiary) !important;
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+  margin-top: 16px !important;
+}
+
+.firebaseui-tos a {
+  color: var(--accent-primary) !important;
+}
+

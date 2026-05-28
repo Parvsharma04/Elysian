@@ -57,7 +57,7 @@ export function WorkoutCard({ workout, index = 0 }: WorkoutCardProps) {
       whileTap={{ scale: 0.98 }}
     >
       <div
-        className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-2xl"
+        className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl"
         style={{ background: `${color}12` }}
       >
         <Icon size={20} style={{ color }} />

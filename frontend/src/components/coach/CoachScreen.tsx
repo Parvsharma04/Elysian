@@ -106,7 +106,7 @@ export function CoachScreen() {
             Your personal fitness copilot
           </p>
         </div>
-        <div className="flex items-center gap-1 px-2 py-1 rounded-full" style={{ background: 'rgba(0, 230, 118, 0.08)', border: '1px solid rgba(0, 230, 118, 0.1)' }}>
+        <div className="flex items-center gap-1 px-2 py-1 rounded-md" style={{ background: 'rgba(0, 230, 118, 0.08)', border: '1px solid rgba(0, 230, 118, 0.1)' }}>
           <ShieldCheck size={10} style={{ color: 'var(--color-success)' }} />
           <span className="text-[9px] font-semibold" style={{ color: 'var(--color-success)' }}>Online</span>
         </div>
@@ -134,7 +134,7 @@ export function CoachScreen() {
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex gap-2 px-4 py-3.5 w-fit rounded-2xl rounded-bl-md"
+                className="flex gap-2 px-4 py-3.5 w-fit rounded-xl rounded-bl-sm"
                 style={{ background: 'var(--bg-card-solid)', border: '1px solid var(--border-subtle)' }}
               >
                 <Loader2 size={14} className="animate-spin" style={{ color: 'var(--accent-primary)' }} />
@@ -161,7 +161,7 @@ export function CoachScreen() {
       >
         <div className="chat-container">
           <div
-            className="flex items-center gap-2 px-4 py-2.5 rounded-2xl"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl"
             style={{
               background: 'var(--bg-card-solid)',
               border: '1px solid var(--border-subtle)',
@@ -182,7 +182,7 @@ export function CoachScreen() {
               id="coach-send"
               onClick={() => handleSend()}
               disabled={!input.trim() || isTyping}
-              className="flex items-center justify-center w-8 h-8 rounded-xl transition-all duration-200"
+              className="flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200"
               style={{
                 background: input.trim() ? 'var(--gradient-primary)' : 'var(--border-subtle)',
                 opacity: input.trim() ? 1 : 0.4,

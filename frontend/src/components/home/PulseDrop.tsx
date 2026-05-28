@@ -47,7 +47,7 @@ export function PulseDrop({ fact, index = 0, compact = false }: PulseDropProps) 
       whileTap={{ scale: 0.97 }}
     >
       <div
-        className={`relative rounded-2xl border ${compact ? 'p-4' : 'p-5'}`}
+        className={`relative rounded-xl border ${compact ? 'p-4' : 'p-5'}`}
         style={{
           background: 'var(--bg-card)',
           borderColor: 'var(--border-subtle)',
@@ -78,7 +78,7 @@ export function PulseDrop({ fact, index = 0, compact = false }: PulseDropProps) 
         <div className="flex items-center gap-2 mt-3">
           <button
             onClick={handleSave}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-medium transition-colors"
             style={{
               background: isSaved
                 ? 'rgba(74, 159, 110, 0.1)'
@@ -93,7 +93,7 @@ export function PulseDrop({ fact, index = 0, compact = false }: PulseDropProps) 
 
           <button
             onClick={handleShare}
-            className="flex items-center justify-center w-6 h-6 rounded-full transition-colors"
+            className="flex items-center justify-center w-6 h-6 rounded-lg transition-colors"
             style={{
               background: 'var(--bg-elevated)',
               border: '1px solid var(--border-subtle)',

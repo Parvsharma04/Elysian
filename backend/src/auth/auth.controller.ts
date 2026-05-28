@@ -36,6 +36,11 @@ export class AuthController {
     return this.authService.login(dto);
   }
 
+  @Post('firebase')
+  async firebaseLogin(@Body('idToken') idToken: string) {
+    return this.authService.loginWithFirebase(idToken);
+  }
+
   @Get('me')
   @UseGuards(JwtAuthGuard)
   async me(@CurrentUser() user: AuthUser) {

@@ -18,8 +18,8 @@ export function ChatBubble({ message }: ChatBubbleProps) {
       className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
     >
       <div
-        className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
-          isUser ? 'rounded-br-md' : 'rounded-bl-md'
+        className={`max-w-[85%] px-4 py-3 rounded-xl text-sm leading-relaxed ${
+          isUser ? 'rounded-br-sm' : 'rounded-bl-sm'
         }`}
         style={{
           background: isUser
