@@ -27,8 +27,8 @@ import { WorkoutsModule } from './workouts/workouts.module';
         type: 'postgres',
         url: config.get<string>('DATABASE_URL'),
         autoLoadEntities: true,
-        synchronize: false, // Never auto-sync in production — use Supabase migrations
-        ssl: config.get<string>('DATABASE_URL')?.includes('supabase.co')
+        synchronize: false, // Never auto-sync in production — use migrations
+        ssl: config.get<string>('DATABASE_URL')?.includes('neon.tech')
           ? { rejectUnauthorized: false }
           : false,
         logging: config.get('NODE_ENV') === 'development' ? ['error', 'warn'] : ['error'],

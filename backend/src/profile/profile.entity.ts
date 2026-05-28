@@ -11,6 +11,7 @@ import {
 @Entity('profiles')
 export class Profile {
   @PrimaryColumn('uuid')
+  // References users.id
   id: string;
 
   @Column({ type: 'text', nullable: true })

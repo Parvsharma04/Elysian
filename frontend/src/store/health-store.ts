@@ -86,7 +86,7 @@ interface HealthStore {
   trendRange: '7d' | '30d' | '90d';
   loading: boolean;
   error: string | null;
-  dataSource: 'local' | 'supabase';
+  dataSource: 'local' | 'remote';
 
   // Actions
   setActiveTab: (tab: string) => void;
@@ -270,16 +270,18 @@ export const useHealthStore = create<HealthStore>((set, get) => ({
     set({ loading: true, error: null });
 
     const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+    const token = typeof window !== 'undefined' ? localStorage.getItem('elysian-token') : null;
+    const headers: Record<string, string> = token ? { Authorization: `Bearer ${token}` } : {};
 
     try {
       const [healthRes, workoutsRes, insightsRes, chatRes] = await Promise.all([
-        fetch(`${API_BASE}/health?days=90`, { credentials: 'include' }),
-        fetch(`${API_BASE}/workouts`, { credentials: 'include' }),
-        fetch(`${API_BASE}/insights`, { credentials: 'include' }),
-        fetch(`${API_BASE}/chat`, { credentials: 'include' }),
+        fetch(`${API_BASE}/health?days=90`, { headers }),
+        fetch(`${API_BASE}/workouts`, { headers }),
+        fetch(`${API_BASE}/insights`, { headers }),
+        fetch(`${API_BASE}/chat`, { headers }),
       ]);
 
-      // If API calls fail (e.g. no Supabase configured), fall back to local mock data
+      // If API calls fail, fall back to local mock data
       if (!healthRes.ok || !workoutsRes.ok) {
         const { generateLocalMockData } = await import('@/lib/local-data');
         const mock = generateLocalMockData();
@@ -342,7 +344,7 @@ export const useHealthStore = create<HealthStore>((set, get) => ({
         ...derived,
         loading: false,
         error: null,
-        dataSource: 'supabase',
+        dataSource: 'remote',
       });
     } catch {
       // Network error → fall back to local mock data

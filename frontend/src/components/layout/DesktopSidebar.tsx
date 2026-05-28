@@ -42,7 +42,7 @@ export function DesktopSidebar() {
         <div>
           <span className="text-sm font-bold tracking-tight gradient-text">Elysian</span>
           <span className="block text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
-            {profile?.subscription_tier === 'pro' ? 'Pro' : profile?.subscription_tier === 'elite' ? 'Elite' : 'Free'}
+            Fitness Intelligence
           </span>
         </div>
       </div>
@@ -103,11 +103,11 @@ export function DesktopSidebar() {
                 color: '#000',
               }}
             >
-              {(profile.display_name || 'U')[0].toUpperCase()}
+              {(profile.name || 'U')[0].toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>
-                {profile.display_name || 'User'}
+                {profile.name || profile.email}
               </p>
             </div>
           </div>

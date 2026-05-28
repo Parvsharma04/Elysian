@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Profile } from './profile.entity';
 import { UpdateProfileDto } from './dto/update-profile.dto';
-import { AuthUser } from '../auth/jwt.strategy';
+import { AuthUser } from '../auth/auth.types';
 
 @Injectable()
 export class ProfileService {
@@ -16,7 +16,7 @@ export class ProfileService {
     private readonly profileRepo: Repository<Profile>,
   ) {}
 
-  async findOrCreate(user: AuthUser): Promise<Profile> {
+  async findOrCreate(user: AuthUser, name?: string): Promise<Profile> {
     let profile = await this.profileRepo.findOne({
       where: { id: user.id },
     });
@@ -25,7 +25,7 @@ export class ProfileService {
       // Auto-create profile for new users
       profile = this.profileRepo.create({
         id: user.id,
-        display_name: user.email?.split('@')[0] || 'User',
+        display_name: name || user.email?.split('@')[0] || 'User',
         avatar_url: null,
       });
       profile = await this.profileRepo.save(profile);

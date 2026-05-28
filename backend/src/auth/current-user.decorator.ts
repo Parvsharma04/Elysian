@@ -1,7 +1,7 @@
 // Elysian — Current User Decorator
 
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { AuthUser } from './jwt.strategy';
+import { AuthUser } from './auth.types';
 
 export const CurrentUser = createParamDecorator(
   (data: unknown, ctx: ExecutionContext): AuthUser => {

@@ -1,95 +1,119 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from 'react';
-import { getSupabase } from '@/lib/supabase';
-import type { User, Session } from '@supabase/supabase-js';
-import type { Profile } from '@/types/database';
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const TOKEN_KEY = 'elysian-token';
+
+export interface AuthUserProfile {
+  id: string;
+  email: string;
+  name: string | null;
+  avatar_url: string | null;
+}
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
-  profile: Profile | null;
+  profile: AuthUserProfile | null;
   loading: boolean;
-  signOut: () => Promise<void>;
+  token: string | null;
+  signOut: () => void;
   refreshProfile: () => Promise<void>;
+  setToken: (token: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
-  user: null,
-  session: null,
   profile: null,
   loading: true,
-  signOut: async () => {},
+  token: null,
+  signOut: () => {},
   refreshProfile: async () => {},
+  setToken: () => {},
 });
 
 export function useAuth() {
   return useContext(AuthContext);
 }
 
+export function getStoredToken(): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(TOKEN_KEY);
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [profile, setProfile] = useState<Profile | null>(null);
+  const [profile, setProfile] = useState<AuthUserProfile | null>(null);
+  const [token, setTokenState] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchProfile = useCallback(async () => {
+  const fetchProfile = useCallback(async (jwt?: string) => {
+    const t = jwt || token || getStoredToken();
+    if (!t) {
+      setLoading(false);
+      return;
+    }
     try {
-      const res = await fetch('/api/profile');
+      const res = await fetch(`${API_BASE}/auth/me`, {
+        headers: { Authorization: `Bearer ${t}` },
+      });
       if (res.ok) {
         const data = await res.json();
         setProfile(data);
+      } else {
+        // Token expired or invalid
+        localStorage.removeItem(TOKEN_KEY);
+        setTokenState(null);
+        setProfile(null);
       }
-    } catch (err) {
-      console.error('Failed to fetch profile:', err);
+    } catch {
+      // Backend unavailable
+    } finally {
+      setLoading(false);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    const stored = getStoredToken();
+    if (stored) {
+      setTokenState(stored);
+      fetchProfile(stored);
+    } else {
+      // Check for token from OAuth callback in URL
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        const callbackToken = params.get('token');
+        if (callbackToken) {
+          localStorage.setItem(TOKEN_KEY, callbackToken);
+          setTokenState(callbackToken);
+          fetchProfile(callbackToken);
+          // Clean URL
+          window.history.replaceState({}, '', window.location.pathname);
+          return;
+        }
+      }
+      setLoading(false);
     }
   }, []);
 
-  useEffect(() => {
-    const supabase = getSupabase();
+  const handleSetToken = (t: string) => {
+    localStorage.setItem(TOKEN_KEY, t);
+    setTokenState(t);
+    fetchProfile(t);
+  };
 
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session: s } }) => {
-      setSession(s);
-      setUser(s?.user ?? null);
-      if (s?.user) fetchProfile();
-      setLoading(false);
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, s) => {
-        setSession(s);
-        setUser(s?.user ?? null);
-        if (s?.user) {
-          fetchProfile();
-        } else {
-          setProfile(null);
-        }
-        setLoading(false);
-      }
-    );
-
-    return () => subscription.unsubscribe();
-  }, [fetchProfile]);
-
-  const handleSignOut = async () => {
-    const supabase = getSupabase();
-    await supabase.auth.signOut();
-    setUser(null);
-    setSession(null);
+  const handleSignOut = () => {
+    localStorage.removeItem(TOKEN_KEY);
+    setTokenState(null);
     setProfile(null);
   };
 
   return (
     <AuthContext.Provider
       value={{
-        user,
-        session,
         profile,
         loading,
+        token,
         signOut: handleSignOut,
-        refreshProfile: fetchProfile,
+        refreshProfile: () => fetchProfile(),
+        setToken: handleSetToken,
       }}
     >
       {children}

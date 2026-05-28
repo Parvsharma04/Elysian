@@ -69,36 +69,3 @@ export interface ChatMessage {
   content: string;
   created_at: string;
 }
-
-// Database schema for Supabase client
-export interface Database {
-  public: {
-    Tables: {
-      profiles: {
-        Row: Profile;
-        Insert: Partial<Profile> & { id: string };
-        Update: Partial<Profile>;
-      };
-      health_days: {
-        Row: HealthDay;
-        Insert: Omit<HealthDay, 'id' | 'created_at'> & { id?: string };
-        Update: Partial<HealthDay>;
-      };
-      workouts: {
-        Row: Workout;
-        Insert: Omit<Workout, 'id' | 'created_at'> & { id?: string };
-        Update: Partial<Workout>;
-      };
-      ai_insights: {
-        Row: AIInsight;
-        Insert: Omit<AIInsight, 'id' | 'created_at'> & { id?: string };
-        Update: Partial<AIInsight>;
-      };
-      chat_messages: {
-        Row: ChatMessage;
-        Insert: Omit<ChatMessage, 'id' | 'created_at'> & { id?: string };
-        Update: Partial<ChatMessage>;
-      };
-    };
-  };
-}

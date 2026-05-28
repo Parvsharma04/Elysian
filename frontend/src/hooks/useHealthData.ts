@@ -5,7 +5,7 @@ import { useHealthStore } from '@/store/health-store';
 import { useAuth } from '@/components/auth/AuthProvider';
 
 export function useHealthData() {
-  const { user } = useAuth();
+  const { profile } = useAuth();
   const {
     loading,
     error,
@@ -26,8 +26,8 @@ export function useHealthData() {
   } = useHealthStore();
 
   const refresh = useCallback(() => {
-    if (user) fetchAll();
-  }, [user, fetchAll]);
+    fetchAll();
+  }, [fetchAll]);
 
   useEffect(() => {
     refresh();
@@ -50,5 +50,6 @@ export function useHealthData() {
     burnoutRisk,
     streakDays,
     refresh,
+    profile,
   };
 }
