@@ -222,7 +222,7 @@ body {
 
 .desktop-sidebar { display: none; }
 .desktop-header { display: none; }
-.mobile-nav { display: flex; background: var(--glass-bg-strong); border-top: 1px solid var(--border-default); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18); }
+.mobile-nav { display: block; width: 100%; background: var(--bg-primary); border-top: 1px solid var(--border-default); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18); }
 
 /* ── TYPOGRAPHY ── */
 

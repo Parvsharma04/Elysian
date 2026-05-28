@@ -36,7 +36,7 @@ export function BottomNav() {
         }}
       />
 
-      <div className="relative flex items-center justify-around px-2 h-[var(--nav-height)]">
+      <div className="relative flex items-center justify-around w-full h-16 px-2">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           const Icon = tab.icon;
@@ -45,7 +45,7 @@ export function BottomNav() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className="relative flex flex-col items-center justify-center gap-0.5 flex-1 py-2"
+              className="relative flex flex-col items-center justify-center gap-0.5 flex-1 min-w-0 py-2"
               style={{ WebkitTapHighlightColor: 'transparent' }}
             >
               {/* Active indicator dot */}
