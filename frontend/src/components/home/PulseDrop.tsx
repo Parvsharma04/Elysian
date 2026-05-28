@@ -20,11 +20,8 @@ export function PulseDrop({ fact, index = 0, compact = false }: PulseDropProps) 
 
   const handleSave = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isSaved) {
-      unsaveFact(fact.id);
-    } else {
-      saveFact(fact);
-    }
+    if (isSaved) unsaveFact(fact.id);
+    else saveFact(fact);
   };
 
   const handleShare = async (e: React.MouseEvent) => {
@@ -39,48 +36,31 @@ export function PulseDrop({ fact, index = 0, compact = false }: PulseDropProps) 
 
   return (
     <motion.div
-      className={`pulse-drop relative overflow-hidden flex-shrink-0 ${compact ? 'w-[260px]' : 'w-[300px]'}`}
-      initial={{ opacity: 0, scale: 0.92, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
+      className={`pulse-drop relative flex-shrink-0 ${compact ? 'w-[240px]' : 'w-[280px]'}`}
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.5,
-        delay: index * 0.08,
+        duration: 0.4,
+        delay: index * 0.06,
         ease: [0.16, 1, 0.3, 1],
       }}
-      whileTap={{ scale: 0.96 }}
+      whileTap={{ scale: 0.97 }}
     >
-      {/* Gradient background */}
       <div
-        className="absolute inset-0 rounded-3xl opacity-[0.08]"
-        style={{ background: fact.gradient }}
-      />
-
-      {/* Glass card */}
-      <div
-        className={`relative rounded-3xl border border-white/[0.06] backdrop-blur-xl ${compact ? 'p-4' : 'p-5'}`}
+        className={`relative rounded-2xl border ${compact ? 'p-4' : 'p-5'}`}
         style={{
-          background: 'rgba(15, 15, 25, 0.8)',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)',
+          background: 'var(--bg-card)',
+          borderColor: 'var(--border-subtle)',
         }}
       >
-        {/* Top accent line */}
-        <div
-          className="absolute top-0 left-6 right-6 h-[1px]"
-          style={{ background: fact.gradient, opacity: 0.5 }}
-        />
-
         {/* Emoji */}
-        <motion.div
-          className="text-3xl mb-3"
-          animate={{ y: [0, -3, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-        >
+        <div className="text-2xl mb-2.5">
           {fact.emoji}
-        </motion.div>
+        </div>
 
         {/* Title */}
         <h3
-          className="text-sm font-bold tracking-tight mb-1.5"
+          className="text-[13px] font-semibold tracking-tight mb-1"
           style={{ color: 'var(--text-primary)' }}
         >
           {fact.title}
@@ -95,38 +75,32 @@ export function PulseDrop({ fact, index = 0, compact = false }: PulseDropProps) 
         </p>
 
         {/* Actions */}
-        <div className="flex items-center gap-2 mt-4">
-          <motion.button
+        <div className="flex items-center gap-2 mt-3">
+          <button
             onClick={handleSave}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-semibold transition-all"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium transition-colors"
             style={{
               background: isSaved
-                ? 'rgba(0, 230, 118, 0.12)'
-                : 'rgba(255, 255, 255, 0.04)',
-              border: `1px solid ${isSaved ? 'rgba(0, 230, 118, 0.2)' : 'rgba(255, 255, 255, 0.06)'}`,
+                ? 'rgba(74, 159, 110, 0.1)'
+                : 'var(--bg-elevated)',
+              border: `1px solid ${isSaved ? 'rgba(74, 159, 110, 0.2)' : 'var(--border-subtle)'}`,
               color: isSaved ? 'var(--color-success)' : 'var(--text-secondary)',
             }}
-            whileTap={{ scale: 0.9 }}
           >
-            {isSaved ? (
-              <BookmarkCheck size={11} />
-            ) : (
-              <Bookmark size={11} />
-            )}
+            {isSaved ? <BookmarkCheck size={10} /> : <Bookmark size={10} />}
             {isSaved ? 'Saved' : 'Save'}
-          </motion.button>
+          </button>
 
-          <motion.button
+          <button
             onClick={handleShare}
-            className="flex items-center justify-center w-7 h-7 rounded-full transition-all"
+            className="flex items-center justify-center w-6 h-6 rounded-full transition-colors"
             style={{
-              background: 'rgba(255, 255, 255, 0.04)',
-              border: '1px solid rgba(255, 255, 255, 0.06)',
+              background: 'var(--bg-elevated)',
+              border: '1px solid var(--border-subtle)',
             }}
-            whileTap={{ scale: 0.9 }}
           >
-            <Share2 size={11} style={{ color: 'var(--text-tertiary)' }} />
-          </motion.button>
+            <Share2 size={10} style={{ color: 'var(--text-tertiary)' }} />
+          </button>
         </div>
       </div>
     </motion.div>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Mail, ArrowRight, Loader2, User } from 'lucide-react';
+import { Zap, ArrowRight, Loader2 } from 'lucide-react';
 import { useAuth } from './AuthProvider';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
@@ -56,22 +56,22 @@ export function AuthScreen() {
       <motion.div
         className="absolute w-[300px] h-[300px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255,255,255,0.015) 0%, transparent 70%)',
           top: '15%',
           left: '10%',
         }}
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute w-[250px] h-[250px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(123, 97, 255, 0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255,255,255,0.01) 0%, transparent 70%)',
           bottom: '20%',
           right: '5%',
         }}
-        animate={{ scale: [1.1, 0.9, 1.1], opacity: [0.4, 0.2, 0.4] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ scale: [1.05, 0.95, 1.05], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <motion.div
@@ -88,18 +88,18 @@ export function AuthScreen() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div
-            className="flex items-center justify-center w-14 h-14 rounded-2xl"
+            className="flex items-center justify-center w-12 h-12 rounded-xl"
             style={{
-              background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(123, 97, 255, 0.12))',
-              border: '1px solid rgba(0, 212, 255, 0.1)',
+              background: 'var(--bg-elevated)',
+              border: '1px solid var(--border-default)',
             }}
           >
-            <Zap size={28} style={{ color: 'var(--accent-primary)' }} />
+            <Zap size={24} style={{ color: 'var(--text-primary)' }} />
           </div>
           <div className="text-center">
-            <h1 className="text-2xl font-bold tracking-tight gradient-text">Elysian</h1>
+            <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>Elysian</h1>
             <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
-              AI-powered fitness intelligence
+              Your private health journal
             </p>
           </div>
         </motion.div>

@@ -100,35 +100,32 @@ export function HomeScreen() {
 
       {/* Story Cards — editorial insights */}
       <motion.div variants={stagger.item} className="flex flex-col gap-3">
-        <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-1" style={{ color: 'var(--text-tertiary)' }}>
+        <span className="text-[11px] font-semibold tracking-wide px-1" style={{ color: 'var(--text-tertiary)' }}>
           Your Story Today
         </span>
 
         <StoryCard
           icon={Heart}
-          iconColor="#ff6b6b"
+          iconColor="#d4654a"
           title="Recovery"
           body={recoveryStory}
-          gradient="linear-gradient(135deg, #ff6b6b, #ff9a9e)"
           index={0}
         />
 
         <StoryCard
           icon={Zap}
-          iconColor="#ffab00"
+          iconColor="#e8a838"
           title="Energy Levels"
           body={fatigueStory}
-          gradient="linear-gradient(135deg, #ffab00, #fee140)"
           index={1}
         />
 
         {burnoutRisk.level !== 'low' && (
           <StoryCard
             icon={Brain}
-            iconColor="#7b61ff"
+            iconColor="#8b6cc1"
             title="Burnout Alert"
             body={`Burnout risk is ${burnoutRisk.level}. Your recent patterns suggest you should prioritize recovery activities and ensure adequate sleep.`}
-            gradient="linear-gradient(135deg, #7b61ff, #b388ff)"
             index={2}
           />
         )}
@@ -136,10 +133,9 @@ export function HomeScreen() {
         {topInsight && (
           <StoryCard
             icon={TrendingUp}
-            iconColor="#00d4ff"
+            iconColor="#4a9f6e"
             title={topInsight.title}
             body={topInsight.body}
-            gradient="linear-gradient(135deg, #00d4ff, #4facfe)"
             index={3}
           />
         )}
@@ -147,10 +143,9 @@ export function HomeScreen() {
         {today && today.sleepHours > 0 && (
           <StoryCard
             icon={Moon}
-            iconColor="#a18cd1"
+            iconColor="#7a8fb5"
             title="Last Night"
             body={`You slept ${today.sleepHours.toFixed(1)} hours with ${today.sleepDeep.toFixed(1)}h deep sleep. ${today.sleepHours >= 7.5 ? 'Excellent recovery window.' : 'Try to get closer to 8 hours tonight.'}`}
-            gradient="linear-gradient(135deg, #a18cd1, #fbc2eb)"
             index={4}
           />
         )}

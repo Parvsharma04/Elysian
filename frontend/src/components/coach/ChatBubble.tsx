@@ -23,9 +23,9 @@ export function ChatBubble({ message }: ChatBubbleProps) {
         }`}
         style={{
           background: isUser
-            ? 'linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(123, 97, 255, 0.15))'
+            ? 'linear-gradient(135deg, rgba(232, 168, 56, 0.12), rgba(232, 168, 56, 0.05))'
             : 'var(--bg-card-solid)',
-          border: `1px solid ${isUser ? 'rgba(0, 212, 255, 0.1)' : 'var(--border-subtle)'}`,
+          border: `1px solid ${isUser ? 'rgba(232, 168, 56, 0.16)' : 'var(--border-subtle)'}`,
           color: 'var(--text-primary)',
         }}
       >

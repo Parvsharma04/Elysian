@@ -18,66 +18,49 @@ export function StoryCard({
   iconColor,
   title,
   body,
-  gradient,
   children,
   index = 0,
 }: StoryCardProps) {
   return (
     <motion.div
-      className="relative overflow-hidden rounded-3xl"
-      initial={{ opacity: 0, y: 20 }}
+      className="relative rounded-2xl border"
+      style={{
+        background: 'var(--bg-card)',
+        borderColor: 'var(--border-subtle)',
+      }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.5,
-        delay: index * 0.06,
+        duration: 0.4,
+        delay: index * 0.05,
         ease: [0.16, 1, 0.3, 1],
       }}
-      whileTap={{ scale: 0.98 }}
     >
-      {/* Background gradient accent */}
-      {gradient && (
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{ background: gradient }}
-        />
-      )}
-
-      {/* Card body */}
-      <div
-        className="relative p-5 border border-white/[0.04] rounded-3xl"
-        style={{
-          background: 'rgba(12, 12, 20, 0.7)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-        }}
-      >
+      <div className="p-4">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center gap-3 mb-2.5">
           <div
-            className="flex items-center justify-center w-9 h-9 rounded-xl"
-            style={{ background: `${iconColor}12` }}
+            className="flex items-center justify-center w-8 h-8 rounded-lg"
+            style={{ background: `${iconColor}14` }}
           >
-            <Icon size={17} style={{ color: iconColor }} />
+            <Icon size={16} style={{ color: iconColor }} />
           </div>
-          <div className="flex-1">
-            <h3
-              className="text-sm font-bold tracking-tight"
-              style={{ color: 'var(--text-primary)' }}
-            >
-              {title}
-            </h3>
-          </div>
+          <h3
+            className="text-[13px] font-semibold tracking-tight"
+            style={{ color: 'var(--text-primary)' }}
+          >
+            {title}
+          </h3>
         </div>
 
-        {/* Body text */}
+        {/* Body */}
         <p
-          className="text-xs leading-relaxed"
+          className="text-[13px] leading-relaxed"
           style={{ color: 'var(--text-secondary)' }}
         >
           {body}
         </p>
 
-        {/* Optional child content */}
         {children && <div className="mt-3">{children}</div>}
       </div>
     </motion.div>

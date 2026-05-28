@@ -40,6 +40,17 @@ export class AuthService {
   }
 
   async login(dto: LoginDto) {
+    // Demo account — works without database
+    if (dto.email === 'demo@elysian.app' && dto.password === 'demo123') {
+      const demoUser = {
+        id: '00000000-0000-0000-0000-000000000001',
+        email: 'demo@elysian.app',
+        name: 'Demo User',
+        avatar_url: null,
+      } as User;
+      return this.buildTokenResponse(demoUser);
+    }
+
     const user = await this.userRepo.findOne({
       where: { email: dto.email },
     });
@@ -92,6 +103,11 @@ export class AuthService {
   }
 
   async getMe(userId: string) {
+    // Demo account
+    if (userId === '00000000-0000-0000-0000-000000000001') {
+      return { id: userId, email: 'demo@elysian.app', name: 'Demo User', avatar_url: null };
+    }
+
     const user = await this.userRepo.findOne({ where: { id: userId } });
     if (!user) throw new UnauthorizedException('User not found');
     return {

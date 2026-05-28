@@ -31,19 +31,13 @@ export function DesktopSidebar() {
       {/* Logo */}
       <div className="flex items-center gap-3 px-2 mb-8">
         <div
-          className="flex items-center justify-center w-9 h-9 rounded-xl"
-          style={{
-            background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(123, 97, 255, 0.12))',
-            border: '1px solid rgba(0, 212, 255, 0.08)',
-          }}
+          className="flex items-center justify-center w-8 h-8 rounded-lg"
+          style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}
         >
-          <Zap size={18} style={{ color: 'var(--accent-primary)' }} />
+          <Zap size={16} style={{ color: 'var(--text-primary)' }} />
         </div>
         <div>
-          <span className="text-sm font-bold tracking-tight gradient-text">Elysian</span>
-          <span className="block text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
-            Fitness Intelligence
-          </span>
+          <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>Elysian</span>
         </div>
       </div>
 
@@ -59,14 +53,14 @@ export function DesktopSidebar() {
               onClick={() => setActiveTab(tab.id)}
               className="relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors duration-150 group"
               style={{
-                background: isActive ? 'rgba(0, 212, 255, 0.06)' : 'transparent',
+                background: isActive ? 'var(--bg-elevated)' : 'transparent',
               }}
             >
               {isActive && (
                 <motion.div
                   layoutId="sidebar-active"
                   className="absolute left-0 w-[3px] h-5 rounded-full"
-                  style={{ background: 'var(--accent-primary)' }}
+                  style={{ background: 'var(--text-primary)' }}
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 />
               )}
@@ -74,7 +68,7 @@ export function DesktopSidebar() {
                 size={18}
                 strokeWidth={isActive ? 2 : 1.5}
                 style={{
-                  color: isActive ? 'var(--accent-primary)' : 'var(--text-tertiary)',
+                  color: isActive ? 'var(--text-primary)' : 'var(--text-tertiary)',
                   transition: 'color 150ms',
                 }}
               />
@@ -97,10 +91,11 @@ export function DesktopSidebar() {
         {profile && (
           <div className="flex items-center gap-3 px-2 mb-3">
             <div
-              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
+              className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-semibold"
               style={{
-                background: 'var(--gradient-primary)',
-                color: '#000',
+                background: 'var(--bg-elevated)',
+                border: '1px solid var(--border-default)',
+                color: 'var(--text-primary)',
               }}
             >
               {(profile.name || 'U')[0].toUpperCase()}
