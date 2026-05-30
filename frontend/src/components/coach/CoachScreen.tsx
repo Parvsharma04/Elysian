@@ -91,7 +91,7 @@ export function CoachScreen() {
         }}
       >
         <div
-          className="flex items-center justify-center w-9 h-9 rounded-xl"
+          className="flex items-center justify-center w-9 h-9 rounded-md"
           style={{
             background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(123, 97, 255, 0.1))',
           }}
@@ -134,7 +134,7 @@ export function CoachScreen() {
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex gap-2 px-4 py-3.5 w-fit rounded-xl rounded-bl-sm"
+                className="flex gap-2 px-4 py-3.5 w-fit rounded-md rounded-bl-none"
                 style={{ background: 'var(--bg-card-solid)', border: '1px solid var(--border-subtle)' }}
               >
                 <Loader2 size={14} className="animate-spin" style={{ color: 'var(--accent-primary)' }} />
@@ -161,7 +161,7 @@ export function CoachScreen() {
       >
         <div className="chat-container">
           <div
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-md"
             style={{
               background: 'var(--bg-card-solid)',
               border: '1px solid var(--border-subtle)',
@@ -182,7 +182,7 @@ export function CoachScreen() {
               id="coach-send"
               onClick={() => handleSend()}
               disabled={!input.trim() || isTyping}
-              className="flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200"
+              className="flex items-center justify-center w-8 h-8 rounded-md transition-all duration-200"
               style={{
                 background: input.trim() ? 'var(--gradient-primary)' : 'var(--border-subtle)',
                 opacity: input.trim() ? 1 : 0.4,

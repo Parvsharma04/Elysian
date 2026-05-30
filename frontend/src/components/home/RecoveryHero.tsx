@@ -43,7 +43,7 @@ export function RecoveryHero() {
 
       {/* Secondary metrics row */}
       <div
-        className="flex items-stretch w-full rounded-xl overflow-hidden"
+        className="flex items-stretch w-full rounded-md overflow-hidden"
         style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}
       >
         <Stat icon={Heart} label="Recovery" value={recoveryScore} color="var(--recovery-purple)" />

@@ -10,7 +10,7 @@ interface StreakBannerProps {
 export function StreakBanner({ days }: StreakBannerProps) {
   return (
     <motion.div
-      className="relative overflow-hidden rounded-xl p-4"
+      className="relative overflow-hidden rounded-md p-4"
       style={{
         background: 'linear-gradient(135deg, rgba(255, 171, 0, 0.12), rgba(255, 82, 82, 0.08))',
         border: '1px solid rgba(255, 171, 0, 0.15)',
@@ -22,7 +22,7 @@ export function StreakBanner({ days }: StreakBannerProps) {
       <div className="flex items-center gap-3">
         <div className="relative">
           <div
-            className="flex items-center justify-center w-12 h-12 rounded-xl animate-pulse-glow"
+            className="flex items-center justify-center w-12 h-12 rounded-md animate-pulse-glow"
             style={{
               background: 'linear-gradient(135deg, rgba(255, 171, 0, 0.2), rgba(255, 82, 82, 0.2))',
             }}

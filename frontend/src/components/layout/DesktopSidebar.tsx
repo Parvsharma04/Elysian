@@ -31,7 +31,7 @@ export function DesktopSidebar() {
       {/* Logo */}
       <div className="flex items-center gap-3 px-2 mb-8">
         <div
-          className="flex items-center justify-center w-8 h-8 rounded-lg"
+          className="flex items-center justify-center w-8 h-8 rounded-md"
           style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}
         >
           <Zap size={16} style={{ color: 'var(--text-primary)' }} />
@@ -51,7 +51,7 @@ export function DesktopSidebar() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className="relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors duration-150 group"
+              className="relative flex items-center gap-3 px-3 py-2.5 rounded-md text-left transition-colors duration-150 group"
               style={{
                 background: isActive ? 'var(--bg-elevated)' : 'transparent',
               }}
@@ -109,7 +109,7 @@ export function DesktopSidebar() {
         )}
         <button
           onClick={signOut}
-          className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs w-full transition-colors duration-150 hover:bg-[var(--bg-tertiary)]"
+          className="flex items-center gap-2 px-3 py-2 rounded-md text-xs w-full transition-colors duration-150 hover:bg-[var(--bg-tertiary)]"
           style={{ color: 'var(--text-tertiary)' }}
         >
           <LogOut size={14} />

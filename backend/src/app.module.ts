@@ -13,6 +13,7 @@ if (process.env.DATABASE_URL) {
     require('./chat/chat.module').ChatModule,
     require('./health/health.module').HealthModule,
     require('./insights/insights.module').InsightsModule,
+    require('./integrations/integrations.module').IntegrationsModule,
     require('./profile/profile.module').ProfileModule,
     require('./seed/seed.module').SeedModule,
     require('./workouts/workouts.module').WorkoutsModule,

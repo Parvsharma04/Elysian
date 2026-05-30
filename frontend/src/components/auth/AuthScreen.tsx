@@ -131,7 +131,7 @@ export function AuthScreen() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div
-            className="flex items-center justify-center w-12 h-12 rounded-xl"
+            className="flex items-center justify-center w-12 h-12 rounded-md"
             style={{
               background: 'var(--bg-elevated)',
               border: '1px solid var(--border-default)',

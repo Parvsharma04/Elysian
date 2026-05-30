@@ -46,7 +46,7 @@ export function InsightCard({ insight, compact = false }: InsightCardProps) {
       <div className={`flex gap-3 ${compact ? 'p-3' : 'p-4'}`}>
         {/* Icon */}
         <div
-          className="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-xl"
+          className="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-md"
           style={{ background: `color-mix(in srgb, ${config.color} 10%, transparent)` }}
         >
           <Icon size={17} style={{ color: config.color }} />

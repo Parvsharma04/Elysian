@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Elysian",
+    "slug": "elysian",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "elysian",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "android": {
+      "package": "co.elysian.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#121214"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "co.elysian.app",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "Elysian reads your health data to provide personalized fitness insights.",
+        "NSHealthUpdateUsageDescription": "Elysian may save workout summaries to Apple Health."
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "react-native-health-connect",
+        {
+          "readPermissions": [
+            "Steps",
+            "HeartRate",
+            "RestingHeartRate",
+            "HeartRateVariabilityRmssd",
+            "SleepSession",
+            "ExerciseSession",
+            "TotalCaloriesBurned",
+            "ActiveCaloriesBurned",
+            "Weight"
+          ]
+        }
+      ]
+    ]
+  }
+}

@@ -16,7 +16,7 @@ const options: { value: '7d' | '30d' | '90d'; label: string }[] = [
 export function RangeSelector({ value, onChange }: RangeSelectorProps) {
   return (
     <div
-      className="inline-flex items-center gap-1 p-1 rounded-xl"
+      className="inline-flex items-center gap-1 p-1 rounded-md"
       style={{
         background: 'var(--bg-card)',
         border: '1px solid var(--border-subtle)',
@@ -28,7 +28,7 @@ export function RangeSelector({ value, onChange }: RangeSelectorProps) {
           <button
             key={opt.value}
             onClick={() => onChange(opt.value)}
-            className="relative px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors duration-200"
+            className="relative px-4 py-1.5 rounded text-xs font-semibold transition-colors duration-200"
             style={{
               color: isActive ? 'var(--text-primary)' : 'var(--text-tertiary)',
             }}
@@ -36,7 +36,7 @@ export function RangeSelector({ value, onChange }: RangeSelectorProps) {
             {isActive && (
               <motion.div
                 layoutId="range-indicator"
-                className="absolute inset-0 rounded-lg"
+                className="absolute inset-0 rounded"
                 style={{
                   background: 'var(--bg-elevated)',
                   border: '1px solid var(--border-default)',

@@ -23,7 +23,7 @@ export function StoryCard({
 }: StoryCardProps) {
   return (
     <motion.div
-      className="relative rounded-xl border"
+      className="relative rounded-md border"
       style={{
         background: 'var(--bg-card)',
         borderColor: 'var(--border-subtle)',
@@ -40,7 +40,7 @@ export function StoryCard({
         {/* Header */}
         <div className="flex items-center gap-3 mb-2.5">
           <div
-            className="flex items-center justify-center w-8 h-8 rounded-lg"
+            className="flex items-center justify-center w-8 h-8 rounded-md"
             style={{ background: `${iconColor}14` }}
           >
             <Icon size={16} style={{ color: iconColor }} />

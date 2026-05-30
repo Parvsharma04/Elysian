@@ -7,6 +7,7 @@ import { SavedDropsGrid } from './SavedDropsGrid';
 import { ScoreRing } from '@/components/ui/ScoreRing';
 import { Bookmark, Flame, Footprints, Moon, Trophy, Sparkles, LogOut } from 'lucide-react';
 import { useAuth } from '@/components/auth/AuthProvider';
+import { IntegrationsCard } from './IntegrationsCard';
 
 export function ProfileScreen() {
   const { profile, signOut } = useAuth();
@@ -31,7 +32,7 @@ export function ProfileScreen() {
       >
         {/* Avatar placeholder with gradient ring */}
         <motion.div
-          className="relative w-20 h-20 rounded-full flex items-center justify-center mb-4"
+          className="relative w-20 h-20 rounded-lg flex items-center justify-center mb-4"
           style={{
             background: 'linear-gradient(135deg, #00d4ff20, #7b61ff20)',
             border: '2px solid rgba(0, 212, 255, 0.2)',
@@ -82,6 +83,15 @@ export function ProfileScreen() {
         <QuickStat icon={Trophy} label="Drops" value={`${savedFacts.length}`} color="#fa709a" />
       </motion.div>
 
+      {/* Health Integrations */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+      >
+        <IntegrationsCard />
+      </motion.div>
+
       {/* Saved Pulse Drops */}
       <motion.div
         className="flex flex-col gap-3"
@@ -109,7 +119,7 @@ export function ProfileScreen() {
           <SavedDropsGrid facts={savedFacts} />
         ) : (
           <motion.div
-            className="flex flex-col items-center gap-3 py-12 rounded-xl border border-dashed border-white/[0.06]"
+            className="flex flex-col items-center gap-3 py-12 rounded-md border border-dashed border-white/[0.06]"
             style={{ background: 'rgba(12, 12, 20, 0.4)' }}
           >
             <motion.div
@@ -141,7 +151,7 @@ function QuickStat({
 }) {
   return (
     <div
-      className="flex flex-col items-center gap-1.5 py-3 rounded-xl border border-white/[0.04]"
+      className="flex flex-col items-center gap-1.5 py-3 rounded-md border border-white/[0.04]"
       style={{ background: 'rgba(12, 12, 20, 0.6)' }}
     >
       <Icon size={14} style={{ color }} />

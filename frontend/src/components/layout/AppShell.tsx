@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useHealthStore } from '@/store/health-store';
 import { BottomNav } from './BottomNav';
 import { DesktopSidebar } from './DesktopSidebar';
+import { PwaHeader } from './PwaHeader';
 import { HomeScreen } from '@/components/home/HomeScreen';
 import { CoachScreen } from '@/components/coach/CoachScreen';
 import { TrendsScreen } from '@/components/trends/TrendsScreen';
@@ -37,6 +38,9 @@ export function AppShell() {
 
       {/* Desktop sidebar */}
       <DesktopSidebar />
+
+      {/* PWA standalone header (mobile/tablet only) */}
+      <PwaHeader />
 
       {/* Main content area */}
       <div className="app-container flex flex-col flex-1 min-h-dvh">

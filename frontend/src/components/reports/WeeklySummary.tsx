@@ -76,7 +76,7 @@ export function WeeklySummary({ currentWeek, previousWeek }: WeeklySummaryProps)
           return (
             <motion.div
               key={comp.label}
-              className="flex flex-col gap-1 p-3 rounded-xl"
+              className="flex flex-col gap-1 p-3 rounded-md"
               style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)' }}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}

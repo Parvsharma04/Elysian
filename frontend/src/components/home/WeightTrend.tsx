@@ -61,7 +61,7 @@ export function WeightTrend() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div
-            className="flex items-center justify-center w-7 h-7 rounded-lg"
+            className="flex items-center justify-center w-7 h-7 rounded-md"
             style={{ background: 'rgba(0, 212, 255, 0.1)' }}
           >
             <Scale size={14} style={{ color: 'var(--accent-primary)' }} />

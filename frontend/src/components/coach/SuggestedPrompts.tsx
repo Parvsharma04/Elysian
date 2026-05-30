@@ -15,7 +15,7 @@ export function SuggestedPrompts({ onSelect }: SuggestedPromptsProps) {
           <button
             key={prompt}
             onClick={() => onSelect(prompt)}
-            className="px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.97]"
+            className="px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.97]"
             style={{
               background: 'var(--bg-card-solid)',
               border: '1px solid var(--border-subtle)',
